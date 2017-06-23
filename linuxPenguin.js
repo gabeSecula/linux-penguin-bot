@@ -14,9 +14,9 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if (msg.content.substring(0,1) === '$') {
-    exec(msg, function(error, stdout, stderr) {
-    msg.reply('```'+stdout+'```');
-
+    exec(msg.content.substring(1), function(error, stdout, stderr) {
+    msg.reply('``` ' + stdout + stderr + ' ``` ');
+    console.log(stdout + '\n' + stderr);
     });
   }
 });
