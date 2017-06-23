@@ -3,7 +3,7 @@ var exec = require('child_process').exec;
 const client = new Discord.Client();
 const prefix = '$';
 
-
+//login with discord API secret token
 client.login('MzI3NDgyMTQyMzYxOTExMjk2.DC3htw.7wPGU66xGpW-nbGHynOolyvUBKw');
 
 client.on('ready', () => {
@@ -13,8 +13,8 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if (msg.content.substring(0,1) === '$') {
-    msg.reply('fuck you mike');
     exec(msg, function(error, stdout, stderr) {
+    msg.reply('```'+stdout+'```');
 
     });
   }
