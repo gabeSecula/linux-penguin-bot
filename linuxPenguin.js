@@ -8,9 +8,8 @@ client.login('MzI3NDgyMTQyMzYxOTExMjk2.DC3htw.7wPGU66xGpW-nbGHynOolyvUBKw');
 
 //This is the linux functionality
 function terminal(msg) {
-  //idk what the fuck to do yet
   exec(msg.content, function(error, stdout, stderr) {
-  msg.reply('```' + stdout + stderr + ' ``` ');
+  msg.channel.send('```' + stdout + stderr + ' ``` ');
   });
 }
 
@@ -48,12 +47,9 @@ client.on('message', msg => {
 		  setLotteryChannel(msg);
           } else if (msg.content === '&lottery') {
 		  lottery(msg);
-	  }
-
-//This is DM functionality -- removed for the time being, still works, just trying to get the lottery together
-/* else if (msg.content.substring(0,1) === '$') {
-    exec(msg.content.substring(1), function(error, stdout, stderr) {
-    msg.reply('```' + stdout + stderr + ' ``` ');
-    });*/
+	  } 
+  }  else if (msg.content.substring(0,1) === '$'){
+                  terminal(msg.content.substring(1));
+          
   }
 });
