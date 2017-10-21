@@ -8,9 +8,18 @@ client.login('MzI3NDgyMTQyMzYxOTExMjk2.DC3htw.7wPGU66xGpW-nbGHynOolyvUBKw');
 
 //This is the linux functionality
 function terminal(msg) {
-  exec(msg.content, function(error, stdout, stderr) {
-  return('\`\`\`' + stdout + stderr + '\`\`\`');
-  });
+  console.log(msg);
+  if(msg.content.substring(0,1) === '$') {
+    exec(msg.content.substring(1), function(error, stdout, stderr) {
+      console.log('\`\`\`' + stdout + stderr + '\`\`\`');
+      msg.reply('\`\`\`' + stdout + stderr + '\`\`\`');
+    });
+  } else {
+    exec(msg.content, function(error, stdout, stderr) {
+      console.log('\`\`\`' + stdout + stderr + '\`\`\`');
+      msg.channel.send('\`\`\`' + stdout + stderr + '\`\`\`');
+    });
+  }
 }
 
 //Function to set the lottery text channel
@@ -41,15 +50,15 @@ client.on('ready', () => {
 //Message handler
 client.on('message', msg => {
   if ((msg.channel.type === 'dm')&&(!msg.author.bot)) {
-    msg.channel.send(terminal(msg));
+    terminal(msg);
   } else if (msg.content.substring(0,1) === '&') {
 	  if (msg.content === '&setLotteryChannel') {
 		  setLotteryChannel(msg);
           } else if (msg.content === '&lottery') {
 		  lottery(msg);
-	  } 
+	  }
   }  else if (msg.content.substring(0,1) === '$'){
-                  msg.reply(terminal(msg.content.substring(1)));
-          
+      terminal(msg);
+
   }
 });
