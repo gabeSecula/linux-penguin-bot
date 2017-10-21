@@ -9,7 +9,7 @@ client.login('MzI3NDgyMTQyMzYxOTExMjk2.DC3htw.7wPGU66xGpW-nbGHynOolyvUBKw');
 //This is the linux functionality
 function terminal(msg) {
   exec(msg.content, function(error, stdout, stderr) {
-  msg.channel.send('```' + stdout + stderr + ' ``` ');
+  return('\`\`\`' + stdout + stderr + '\`\`\`');
   });
 }
 
@@ -41,7 +41,7 @@ client.on('ready', () => {
 //Message handler
 client.on('message', msg => {
   if ((msg.channel.type === 'dm')&&(!msg.author.bot)) {
-    terminal(msg);
+    msg.channel.send(terminal(msg));
   } else if (msg.content.substring(0,1) === '&') {
 	  if (msg.content === '&setLotteryChannel') {
 		  setLotteryChannel(msg);
@@ -49,7 +49,7 @@ client.on('message', msg => {
 		  lottery(msg);
 	  } 
   }  else if (msg.content.substring(0,1) === '$'){
-                  terminal(msg.content.substring(1));
+                  msg.reply(terminal(msg.content.substring(1)));
           
   }
 });
