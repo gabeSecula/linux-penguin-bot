@@ -3,12 +3,16 @@ var exec = require('child_process').exec;
 const client = new Discord.Client();
 const prefix = '$';
 var lotteryChannel;
-
-client.login('MzI3NDgyMTQyMzYxOTExMjk2.DC3htw.7wPGU66xGpW-nbGHynOolyvUBKw');
+var config = require ('config');
+var loginToken = config.get('login'); //Put your login token in the config file.
+//https://www.npmjs.com/package/config
+//need to run: npm install config
+//Add gitignore for config
+client.login('MzI3NDgyMTQyMzYxOTExMjk2.DC3htw.7wPGU66xGpW-nbGHynOolyvUBKw'); //Replace with loginToken later
 
 //This is the linux functionality
 function terminal(msg) {
-  console.log(msg);
+  console.log(msg);//Spawn a child process idiot
   if(msg.content.substring(0,1) === '$') {
     exec(msg.content.substring(1), function(error, stdout, stderr) {
       console.log('\`\`\`' + stdout + stderr + '\`\`\`');
@@ -21,7 +25,7 @@ function terminal(msg) {
     });
   }
 }
-
+//Move this to book worm bot
 //Function to set the lottery text channel
 function setLotteryChannel(msg) {
 	lotteryChannel = msg.channel;
