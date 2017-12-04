@@ -8,7 +8,7 @@ var loginToken = config.get('login'); //Put your login token in the config file.
 //https://www.npmjs.com/package/config
 //need to run: npm install config
 //Add gitignore for config
-client.login('MzI3NDgyMTQyMzYxOTExMjk2.DC3htw.7wPGU66xGpW-nbGHynOolyvUBKw'); //Replace with loginToken later
+client.login(''); //Replace with loginToken later
 
 //This is the linux functionality
 function terminal(msg) {
