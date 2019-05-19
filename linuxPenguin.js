@@ -48,7 +48,7 @@ function lottery(msg) {
 //Runs when the bot successfully logs in
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setGame(`Linux Lords need no help.`);
+  client.user.setGame(`You need help?`);
 });
 
 //Message handler
