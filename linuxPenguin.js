@@ -3,16 +3,19 @@ var exec = require('child_process').exec;
 const client = new Discord.Client();
 const prefix = '$';
 var lotteryChannel;
-var config = require ('config');
+
+
+
+var config = require('config'); 
 var loginToken = config.get('login'); //Put your login token in the config file.
 //https://www.npmjs.com/package/config
 //need to run: npm install config
 //Add gitignore for config
-client.login(''); //Replace with loginToken later
+client.login(loginToken); //Log into Discord *XBox ON, bring up domino's website*
 
 //This is the linux functionality
 function terminal(msg) {
-  console.log(msg);//Spawn a child process idiot
+  console.log(msg); //Spawn a child process idiot
   if(msg.content.substring(0,1) === '$') {
     exec(msg.content.substring(1), function(error, stdout, stderr) {
       console.log('\`\`\`' + stdout + stderr + '\`\`\`');
@@ -24,25 +27,6 @@ function terminal(msg) {
       msg.channel.send('\`\`\`' + stdout + stderr + '\`\`\`');
     });
   }
-}
-//Move this to book worm bot
-//Function to set the lottery text channel
-function setLotteryChannel(msg) {
-	lotteryChannel = msg.channel;
-	msg.channel.send(lotteryChannel.toString() + " has been set as the Lottery Channel");
-}
-
-//Function to run the lottery
-function lottery(msg) {
-  /*
-    This is super primitive, a future iteration will only accept entries with a
-  prefix and will check things like multiple submissions from the same account.
-  I'm not sure if we want to make it so it's always running and checking
-  messages in that channel or if we can make it read past messages and parse
-  properly.
-  */
-	var lotteryArray = lotteryChannel.messages.array();
-	msg.reply(lotteryArray);
 }
 
 //Runs when the bot successfully logs in
