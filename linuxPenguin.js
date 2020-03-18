@@ -4,8 +4,6 @@ const client = new Discord.Client();
 const prefix = '$';
 var lotteryChannel;
 
-
-
 var config = require('config'); 
 var loginToken = config.get('login'); //Put your login token in the config file.
 //https://www.npmjs.com/package/config
