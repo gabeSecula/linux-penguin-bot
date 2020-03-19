@@ -57,10 +57,10 @@ typings/
 # dotenv environment variables file
 .env
 
-#Configuration folder
-config/
+# Configuration folder
+config/*
 
-#Mac Folder
+# Mac Folder
 .DS_Store
 
 

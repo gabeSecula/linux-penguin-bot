@@ -1,14 +1,16 @@
 const Discord = require('discord.js');
-var exec = require('child_process').exec;
 const client = new Discord.Client();
-const prefix = '$';
-var lotteryChannel;
-
 var config = require('config'); 
-var loginToken = config.get('login'); //Put your login token in the config file.
+
+var exec = require('child_process').exec;
+
+const prefix = '$';
+
+var loginToken = config.get('login.token'); //Put your login token in the config file.
 //https://www.npmjs.com/package/config
 //need to run: npm install config
 //Add gitignore for config
+
 client.login(loginToken); //Log into Discord *XBox ON, bring up domino's website*
 
 //This is the linux functionality
@@ -30,7 +32,7 @@ function terminal(msg) {
 //Runs when the bot successfully logs in
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setGame(`You need help?`);
+  //client.user.setGame(`You need help?`);
 });
 
 //Message handler
