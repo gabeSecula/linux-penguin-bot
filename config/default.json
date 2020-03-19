@@ -1,6 +1,3 @@
 {
-    "login" : {
-        "token": "test"
-    }
-     
+    "token": "insert bot token here"
 }

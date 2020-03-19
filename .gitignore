@@ -58,7 +58,7 @@ typings/
 .env
 
 # Configuration folder
-config/*
+config/
 
 # Mac Folder
 .DS_Store

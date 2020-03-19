@@ -6,7 +6,7 @@ var exec = require('child_process').exec;
 
 const prefix = '$';
 
-var loginToken = config.get('login.token'); //Put your login token in the config file.
+var loginToken = config.get('token'); //Put your login token in the config file.
 //https://www.npmjs.com/package/config
 //need to run: npm install config
 //Add gitignore for config
