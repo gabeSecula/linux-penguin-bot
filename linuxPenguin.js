@@ -3,7 +3,7 @@ const config = require('config'); //https://www.npmjs.com/package/config
 const exec = require('child_process').exec; //Basic functionality in NodeJS
 
 const client = new Discord.Client();
-const loginToken = config.get('token'); 
+const loginToken = config.get('token');
 const prefix = '$';
 
 
@@ -15,12 +15,12 @@ function shell(msg) {
   //TODO: Make the function async so the bot can handle a bunch of messages at once.
   //TODO: Can I possibly open a limited access shell so a group could use this all at once? Twitch Chat bot?
   if (msg.content.substring(0, 1) === prefix) {
-    exec(msg.content.substring(1), function (error, stdout, stderr) {
-       returnOutput(error, stdout, stderr, msg);
+    exec(msg.content.substring(1), async function (error, stdout, stderr) {
+      await returnOutput(error, stdout, stderr, msg);
     });
   } else {
-    exec(msg.content, function (error, stdout, stderr) {
-     returnOutput(error, stdout, stderr, msg);
+    exec(msg.content, async function (error, stdout, stderr) {
+      await returnOutput(error, stdout, stderr, msg);
     });
   }
 }
@@ -29,10 +29,10 @@ function shell(msg) {
 function returnOutput(error, stdout, stderr, msg) {
   console.log('stdout: ' + stdout + '\nstderr: ' + stderr);
   msg.reply('\`\`\`shell\n' + stdout + stderr + '\`\`\`');
-  if(error) {
+  if (error) {
     console.log(error.stack);
-    console.log('Error code: '+ error.code);
-    console.log('Signal received: '+ error.signal);
+    console.log('Error code: ' + error.code);
+    console.log('Signal received: ' + error.signal);
   }
 }
 
